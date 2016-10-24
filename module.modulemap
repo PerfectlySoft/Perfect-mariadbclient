@@ -1,4 +1,4 @@
 module mariadbclient {
-    header "/usr/local/include/mariadb/mysql.h"
+    header "/usr/local/include/mysql/mysql.h"
     export *
 }
