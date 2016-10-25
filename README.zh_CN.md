@@ -57,13 +57,19 @@ brew install mariadb-connector-c
 
 另外，还有一个很关键的.pc文件用于编译本项目。如果在您的系统上找不到，请手工编辑如下内容并增加文件： /usr/local/lib/pkgconfig/mariadb.pc
 
-```
+```bash
+prefix=/usr/local
+exec_prefix=${prefix}/bin
+libdir=${prefix}/lib/mariadb
+includedir=${prefix}/include/mariadb
+
 Name: mariadb
 Description: MariaDB Connector/C
-Version: 2.2.2
+Version: 5.5.1
 Requires:
-Libs: -L/usr/local/lib/mariadb -lmariadb
-Cflags: -I/usr/local/include/mariadb
+Libs: -L${libdir} -lmariadb  -ldl -lm -lpthread
+Cflags: -I${includedir}
+Libs_r: -L${libdir} -lmariadb -ldl -lm -lpthread
 ```
 
 请根据具体情况自行替换 mariadb 的头文件目录和库文件目录。

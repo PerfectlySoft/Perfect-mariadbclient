@@ -59,13 +59,20 @@ brew install mariadb-connector-c
 
 Please also make sure that there is a .pc file is the key to build this project.
 If not found, please manually add the following content to /usr/local/lib/pkgconfig/mariadb.pc
-```
+
+```bash
+prefix=/usr/local
+exec_prefix=${prefix}/bin
+libdir=${prefix}/lib/mariadb
+includedir=${prefix}/include/mariadb
+
 Name: mariadb
 Description: MariaDB Connector/C
-Version: 2.2.2
+Version: 5.5.1
 Requires:
-Libs: -L/usr/local/lib/mariadb -lmariadb
-Cflags: -I/usr/local/include/mariadb
+Libs: -L${libdir} -lmariadb  -ldl -lm -lpthread
+Cflags: -I${includedir}
+Libs_r: -L${libdir} -lmariadb -ldl -lm -lpthread
 ```
 
 Please replace the above path if need.
